@@ -1,7 +1,4 @@
 {
   "dependencies": {
-    "antd": "^4.13.0",
-    "dayjs": "^1.10.4",
-    "lodash": "^4.17.21"
   }
 }

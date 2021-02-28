@@ -1,0 +1,11 @@
+.withoutFooter {
+  height: calc(100% - 42px);
+  @apply flex flex-col justify-center items-center;
+}
+//flex flex-col items-center
+
+.fullScreenEle {
+  background-image: url(~/assets/image/sign_bg.png);
+  background-color: #b8e5f8;
+  @apply w-screen h-screen  bg-no-repeat bg-cover;
+}
