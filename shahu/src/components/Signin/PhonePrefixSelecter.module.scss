@@ -1,0 +1,9 @@
+.prefixSelect {
+  @apply text-gray-400;
+  :global {
+    .ant-select-selector {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
