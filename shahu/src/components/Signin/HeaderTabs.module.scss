@@ -1,0 +1,18 @@
+.noBarTabs {
+  :global {
+    .ant-tabs-nav {
+      &::before {
+        display: none;
+      }
+      .ant-tabs-tab {
+        @apply text-base hover:text-gray-600;
+
+        &.ant-tabs-tab-active {
+          .ant-tabs-tab-btn {
+            @apply text-gray-900 font-semibold;
+          }
+        }
+      }
+    }
+  }
+}

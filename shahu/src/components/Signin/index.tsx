@@ -29,13 +29,13 @@ const SigninPage: FC = () => {
       <div className={styles.withoutFooter}>
         <div className="text-center mb-6">
           <h1 className="text-7xl text-primary">傻乎</h1>
-          <h3 className="mt-2 ">
+          <h3 className="mt-2 text-gray-700 font-semibold">
             <span className="text-sm tracking-widest mr-2">没问题</span>
             <span className="text-sm tracking-widest">就创造问题</span>
           </h3>
         </div>
 
-        <div className="bg-white w-96 flex flex-col items-center rounded-sm shadow px-6">
+        <div className="bg-white w-96 flex flex-col items-center rounded-sm shadow px-6 pt-2">
           <div className="self-stretch">
             <HeaderTabs></HeaderTabs>
             <Form

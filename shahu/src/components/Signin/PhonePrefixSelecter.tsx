@@ -8,9 +8,9 @@ const PhonePrefixSelecter: FC = () => {
   function handleChange (value: any) {
     console.log(`selected ${value}`)
   }
-  return (<Select className={styles.prefixSelect} bordered={false} defaultValue="86" style={{ width: 100 }} onChange={handleChange}>
+  return (<Select className={styles.prefixSelect} bordered={false} defaultValue={86} style={{ width: 100 }} onChange={handleChange}>
     {
-      Array(100).fill(null).map((x, idx) => {
+      Array(50).fill(null).map((x, idx) => {
         return <Option key={idx} value={idx + 86}>中国 +86</Option>
       })
     }
