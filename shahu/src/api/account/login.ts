@@ -12,5 +12,5 @@ export function wait (ts: number = 1000) {
 }
 
 export async function login (info: LoginAccountInfo) {
-  return 'ok'
+  await wait()
 }
