@@ -1,0 +1,9 @@
+.getCode{
+  @apply cursor-pointer text-blue-900 hover:text-gray-500;
+  &.active{
+
+  }
+  &Disibled{
+    @apply cursor-not-allowed text-gray-400
+  }
+}
