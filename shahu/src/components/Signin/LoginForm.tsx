@@ -6,7 +6,7 @@ import React, {
 import { Button, Form, Input } from 'antd'
 import PhonePrefixSelecter from './PhonePrefixSelecter'
 import styles from './LoginForm.module.scss'
-console.log(styles)
+import { login } from '~/api/account/login'
 // 验证码code or 语音
 export enum GetCodeEnum {
   // eslint-disable-next-line no-unused-vars
@@ -28,6 +28,7 @@ const LoginForm: FC = () => {
   const [GetCodeFlag, setGetCodeFlag] = useState(GetCodeEnum.Mobile)
   const [CustomError, setCustomError] = useState(UsernameCustomError.Success)
   const [Countdown, setCountdown] = useState(0)
+  const [LoginBtnLoading, setLoginBtnLoading] = useState(false)
   const isMobileCode = GetCodeFlag === GetCodeEnum.Mobile
 
   const toggleGetCode = (e: any) => {
@@ -43,14 +44,19 @@ const LoginForm: FC = () => {
     }
   })
   const getCode = (e: any) => {
-    if (isMobileCode) {
-      if (Countdown === 0) {
-        window.clearTimeout(ptr)
-        ptr = 0
-        setCountdown(60)
-      }
-    } else {
-      // 获取语音
+    // if (isMobileCode) {
+    //   if (Countdown === 0) {
+    //     window.clearTimeout(ptr)
+    //     ptr = 0
+    //     setCountdown(60)
+    //   }
+    // } else {
+    //   // 获取语音
+    // }
+    if (Countdown === 0) {
+      window.clearTimeout(ptr)
+      ptr = 0
+      setCountdown(60)
     }
   }
   const getCodeSlot = (
@@ -61,8 +67,18 @@ const LoginForm: FC = () => {
     </span>
   )
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log('Success:', values)
+    if (values.username) {
+      try {
+        setLoginBtnLoading(true)
+        await login(values)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoginBtnLoading(false)
+      }
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -108,7 +124,7 @@ const LoginForm: FC = () => {
         <span onClick={toggleGetCode} className="cursor-pointer text-gray-500 hover:text-gray-600">接受{isMobileCode ? '语音' : '短信'}验证码</span>
       </div>
       <Form.Item>
-        <Button className="w-full" type="primary" htmlType="submit">登录/注册</Button>
+        <Button loading={LoginBtnLoading} className="w-full" type="primary" htmlType="submit">登录/注册</Button>
       </Form.Item>
     </Form >
   )
