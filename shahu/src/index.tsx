@@ -15,7 +15,7 @@ import Term from './components/Term/index'
 import Home from './components/Home/index'
 // import { createBrowserHistory } from 'history'
 // const customHistory = createBrowserHistory()
-
+import './init.ts'
 ReactDOM.render(
   <React.StrictMode>
     <Router>
