@@ -1,16 +1,8 @@
-// console.log(process.env.NODE_ENV)
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html']
-  },
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        primary: '#1890ff'
-      }
-    }
+    extend: {}
   },
   variants: {
     extend: {}

@@ -7,6 +7,7 @@ import { Button, Form, Input } from 'antd'
 import PhonePrefixSelecter from './PhonePrefixSelecter'
 import styles from './LoginForm.module.scss'
 import { login } from '~/api/account/login'
+import { useHistory } from 'react-router-dom'
 // 验证码code or 语音
 export enum GetCodeEnum {
   // eslint-disable-next-line no-unused-vars
@@ -30,7 +31,7 @@ const LoginForm: FC = () => {
   const [Countdown, setCountdown] = useState(0)
   const [LoginBtnLoading, setLoginBtnLoading] = useState(false)
   const isMobileCode = GetCodeFlag === GetCodeEnum.Mobile
-
+  const history = useHistory()
   const toggleGetCode = (e: any) => {
     isMobileCode ? setGetCodeFlag(GetCodeEnum.Voice) : setGetCodeFlag(GetCodeEnum.Mobile)
   }
@@ -42,7 +43,7 @@ const LoginForm: FC = () => {
         setCountdown(Countdown - 1)
       }, 1000)
     }
-  })
+  }, [Countdown])
   const getCode = (e: any) => {
     // if (isMobileCode) {
     //   if (Countdown === 0) {
@@ -73,9 +74,10 @@ const LoginForm: FC = () => {
       try {
         setLoginBtnLoading(true)
         await login(values)
+        setLoginBtnLoading(false)
+        history.push('/')
       } catch (err) {
         console.error(err)
-      } finally {
         setLoginBtnLoading(false)
       }
     }

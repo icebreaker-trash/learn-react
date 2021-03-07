@@ -6,6 +6,7 @@ export function fakeRequestWrapper (fn: Function) {
       return await fn(...args)
     } catch (err) {
       message.error(err.message)
+      throw err
     }
   }
 }
