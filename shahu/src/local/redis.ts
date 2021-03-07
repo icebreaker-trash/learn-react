@@ -1,7 +1,8 @@
 import * as db from 'idb-keyval'
 
 export const RedisKeyMap = {
-  SelfAccoutInfo: 'SelfAccoutInfo'
+  SelfAccoutInfo: 'SelfAccoutInfo',
+  SelfProfile: 'SelfProfile'
 }
 
 export async function init () {

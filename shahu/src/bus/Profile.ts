@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-
+import redis, { RedisKeyMap } from '~/local/redis'
 export interface IUserProfile {
   nickname: string
   avatar: string
@@ -27,7 +27,7 @@ export const actions = {
       avatar
     }
   },
-  updateProfile (payload: Object) {
+  updateProfile (payload: IUserProfile) {
     return {
       type: actionTypes.UPDATE_PROFILE,
       payload
@@ -66,4 +66,10 @@ const ProfileReducer = (state = initialState, action: IAction) => {
 }
 const store = createStore(ProfileReducer)
 
+;(async () => {
+  const p = await redis.get<IUserProfile>(RedisKeyMap.SelfProfile)
+  if (p) {
+    store.dispatch(actions.updateProfile(p))
+  }
+})()
 export default store

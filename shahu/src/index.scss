@@ -1,4 +1,7 @@
-@import 'tailwindcss/base';
+
+//这个全局样式和 antd 有冲突
+//@import 'tailwindcss/base';
+
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 // @tailwind base;

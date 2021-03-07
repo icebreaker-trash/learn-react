@@ -1,45 +1,40 @@
 // eslint-disable-next-line no-use-before-define
-import React from 'react'
-import { actions, IUserProfile } from '~/bus/Profile'
-import { Input, Form, Button } from 'antd'
+import React, { useEffect } from 'react'
+import { saveProfile2LocalDb } from '~/store/slice/profile'
 import { useSelector, useDispatch } from 'react-redux'
-export default function HomePage () {
-  const Profile = useSelector<IUserProfile, IUserProfile>(state => state)
+import { Avatar } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import ProfileForm from './ProfileForm'
+export default function ProfileEditor () {
+  const profile = useSelector(state => state.profile)
+
   const dispatch = useDispatch()
-  console.log(Profile)
+  useEffect(() => {
+    console.log(profile)
+  }, [profile])
   const onFinish = (values: any) => {
     console.log('Success:', values)
-    dispatch(actions.updateProfile(values))
+    dispatch(saveProfile2LocalDb(values))
   }
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo)
   }
+  const props = {
+    profile,
+    onFinish,
+    onFinishFailed
+  }
   return (
     <>
 
       <div>This is HomePage Page</div>
-      <div>Hello {Profile.nickname}</div>
-      <div>avatar: {Profile.avatar}</div>
+      <div>Hello {profile.nickname}</div>
+      <div>avatar:
+        <Avatar size={30} shape="square" icon={<UserOutlined />} src={profile.avatar} />
+      </div>
       <div className="w-64">
-        <Form
-          initialValues={Profile}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}>
-          <Form.Item label="昵称" name="nickname" rules={[
-            {
-              required: true,
-              message: '请输入您的昵称'
-            }
-          ]}>
-            <Input />
-          </Form.Item>
-          <Form.Item >
-            <Button type="primary" htmlType="submit">
-              修改
-        </Button>
-          </Form.Item>
-        </Form>
+        <ProfileForm {...props}></ProfileForm>
       </div>
 
     </>)
