@@ -13,26 +13,35 @@ import {
 import Signin from './components/Signin/index'
 import Term from './components/Term/index'
 import Home from './components/Home/index'
+import store from './store'
+import { Provider } from 'react-redux'
 // import { createBrowserHistory } from 'history'
 // const customHistory = createBrowserHistory()
 import './init.ts'
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/signin">
-            <Signin />
-          </Route>
-          <Route path="/term">
-            <Term />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <Provider store={store} >
+      <Router>
+        <div>
+          <Switch>
+            <div className="container mx-auto">
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/term">
+                <Term />
+              </Route>
+            </div>
+
+            <Route path="/signin">
+              <Signin />
+            </Route>
+
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
+
   </React.StrictMode>,
   document.getElementById('root')
 )
