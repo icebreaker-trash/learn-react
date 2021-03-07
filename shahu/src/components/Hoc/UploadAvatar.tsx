@@ -33,8 +33,9 @@ interface AntdFormItemProps {
 }
 
 const UploadAvatar: FC<AntdFormItemProps> = (props: AntdFormItemProps) => {
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState(props.value)
   const [loading, setLoading] = useState(false)
+
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}

@@ -9,9 +9,9 @@ export default function ProfileEditor () {
   const profile = useSelector(state => state.profile)
 
   const dispatch = useDispatch()
-  useEffect(() => {
-    console.log(profile)
-  }, [profile])
+  // useEffect(() => {
+  //   console.log(profile)
+  // }, [profile])
   const onFinish = (values: any) => {
     console.log('Success:', values)
     dispatch(saveProfile2LocalDb(values))

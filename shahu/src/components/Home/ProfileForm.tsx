@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-use-before-define
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Input, Form, Button } from 'antd'
 import UploadAvatar from '~/components/Hoc/UploadAvatar'
 interface IProfileForm {
@@ -7,10 +7,18 @@ interface IProfileForm {
   onFinish: (values: any) => void,
   onFinishFailed: (values: any) => void
 }
-
+// setFieldsValue
 const ProfileForm = (props: IProfileForm) => {
+  const formInstance = useRef(null)
+
+  useEffect(() => {
+    formInstance.current?.setFieldsValue(props.profile)
+  }, [props])
+
   return (
+
     <Form
+      ref={formInstance}
       initialValues={props.profile}
       onFinish={props.onFinish}
       onFinishFailed={props.onFinishFailed}>
@@ -33,4 +41,9 @@ const ProfileForm = (props: IProfileForm) => {
     </Form>
   )
 }
+
 export default ProfileForm
+
+// React.memo(ProfileForm, (prevProps, nextProps) => {
+//   return prevProps.profile.nickname === nextProps.profile.nickname
+// })
