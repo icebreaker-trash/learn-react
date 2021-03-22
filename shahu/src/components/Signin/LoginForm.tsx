@@ -96,7 +96,7 @@ const LoginForm: FC = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <Form.Item name="username" className="border-b border-solid border-gray-100 overflow-hidden mb-3" validateStatus="success" rules={[
+      <Form.Item name="username" className="border-0 border-b border-solid  border-gray-100 overflow-hidden mb-3" validateStatus="success" rules={[
         () => {
           return {
             validator: async (rule, value) => {
@@ -115,7 +115,7 @@ const LoginForm: FC = () => {
           isCustomErrorSuccess ? undefined : CustomUsernameSlot
         }></Input>
       </Form.Item>
-      <Form.Item name="password" className="border-b border-solid border-gray-100 overflow-hidden mb-3" >
+      <Form.Item name="password" className="border-0 border-b border-solid border-gray-100 overflow-hidden mb-3" >
         <Input suffix={
           getCodeSlot
         } bordered={false} maxLength={50} placeholder="输入 6 位短信验证码"></Input>

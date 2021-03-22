@@ -6,7 +6,7 @@ import './index.scss'
 import reportWebVitals from './reportWebVitals'
 import {
   BrowserRouter as Router,
-  Switch,
+  // Switch,
   Route
   // Link
 } from 'react-router-dom'
@@ -15,6 +15,7 @@ import Term from './components/Term/index'
 import Home from './components/Home/index'
 import store from './store'
 import { Provider } from 'react-redux'
+import MainLayout from '~/components/Layout'
 // import { createBrowserHistory } from 'history'
 // const customHistory = createBrowserHistory()
 import './init.ts'
@@ -22,23 +23,20 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} >
       <Router>
-        <div>
-          <Switch>
-            <div className="container mx-auto">
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/term">
-                <Term />
-              </Route>
-            </div>
+        <Route exact path="/">
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        </Route>
 
-            <Route path="/signin">
-              <Signin />
-            </Route>
+        <Route path="/term">
+          <Term />
+        </Route>
 
-          </Switch>
-        </div>
+        <Route path="/signin">
+          <Signin />
+        </Route>
+
       </Router>
     </Provider>
 

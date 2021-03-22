@@ -24,7 +24,7 @@ const SigninPage: FC = () => {
           <div className="self-stretch">
             <HeaderTabs></HeaderTabs>
             <LoginForm></LoginForm>
-            <div className="text-xs text-gray-500 pb-4 border-b border-solid border-gray-100">未注册手机验证后自动登录，注册即代表同意<span className="cursor-pointer">《傻乎乎协议》</span></div>
+            <div className="text-xs text-gray-500 pb-4 border-0 border-b border-solid border-gray-100">未注册手机验证后自动登录，注册即代表同意<span className="cursor-pointer">《傻乎乎协议》</span></div>
             <ThirdPartyLogin></ThirdPartyLogin>
           </div>
 
