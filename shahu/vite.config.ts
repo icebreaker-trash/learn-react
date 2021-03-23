@@ -10,11 +10,29 @@ export default defineConfig({
         find: '~',
         replacement: path.resolve(__dirname, 'src')
       },
+      // {
+      //   find: /^~/,
+      //   replacement: path.resolve(__dirname, 'src')
+      // },
       {
         find: '~~',
         replacement: __dirname
       }
+      // {
+      //   find: /^@/,
+      //   replacement: path.resolve(__dirname, 'src')
+      // }
     ]
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true
+      },
+      scss: {
+        additionalData: "@import '~/uni.scss';"
+      }
+    }
   }
   // esbuild: {
   //   jsxInject: 'import React from \'react\''

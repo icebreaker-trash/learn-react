@@ -2,6 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
+import './index.less'
 // import App from './App'
 import reportWebVitals from './reportWebVitals'
 import {
@@ -16,28 +17,33 @@ import Home from './components/Home/index'
 import store from './store'
 import { Provider } from 'react-redux'
 import MainLayout from '~/components/Layout'
+
+import { ConfigProvider } from 'antd'
 // import { createBrowserHistory } from 'history'
 // const customHistory = createBrowserHistory()
 import './init.ts'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} >
-      <Router>
-        <Route exact path="/">
-          <MainLayout>
-            <Home />
-          </MainLayout>
-        </Route>
+      <ConfigProvider autoInsertSpaceInButton={false}>
+        <Router>
+          <Route exact path="/">
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          </Route>
 
-        <Route path="/term">
-          <Term />
-        </Route>
+          <Route path="/term">
+            <Term />
+          </Route>
 
-        <Route path="/signin">
-          <Signin />
-        </Route>
+          <Route path="/signin">
+            <Signin />
+          </Route>
 
-      </Router>
+        </Router>
+      </ConfigProvider>
+
     </Provider>
 
   </React.StrictMode>,

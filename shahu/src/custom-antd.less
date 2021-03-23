@@ -1,0 +1,19 @@
+@primary-color: #06f; // 全局主色
+
+.no-transparent-line.ant-tabs {
+  > .ant-tabs-nav {
+    &::before {
+      content: none;
+    }
+  }
+}
+
+.rounded.ant-select {
+  > .ant-select-selector {
+    @apply rounded-full;
+  }
+}
+
+// .rounded.ant-input-search{
+
+// }

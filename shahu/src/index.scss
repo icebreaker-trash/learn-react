@@ -1,4 +1,3 @@
-
 //这个全局样式和 antd 有冲突
 //@import 'tailwindcss/base';
 
@@ -10,7 +9,6 @@
 
 // @tailwind utilities;
 
-@import 'antd/dist/antd.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -18,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f6f6f6;
+  background-color: #f6f6f6 !important;
 }
 
 code {
