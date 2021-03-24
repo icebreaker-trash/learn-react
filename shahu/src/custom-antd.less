@@ -8,12 +8,36 @@
   }
 }
 
-.rounded.ant-select {
+.ant-rounded.ant-select {
   > .ant-select-selector {
     @apply rounded-full;
   }
 }
+.ant-rounded.ant-input-search {
+  > .ant-input-wrapper {
+    border: 1px solid #d9d9d9;
+    @apply rounded-full;
+    > .ant-input {
+      @apply border-none;
+    }
+    > .ant-input-group-addon {
+      > .ant-btn {
+        @apply border-none;
+      }
+    }
+  }
+}
 
+.ant-rounded.ant-input {
+  @apply rounded-full;
+}
+.ant-rounded.ant-input-affix-wrapper {
+  @apply rounded-full;
+  > .ant-input {
+    background-color: inherit;
+   
+  }
+}
 // .rounded.ant-input-search{
 
 // }

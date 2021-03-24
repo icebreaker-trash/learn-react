@@ -2,7 +2,7 @@
 import React, { PropsWithChildren } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Input, Avatar, Button, AutoComplete } from 'antd'
-import { MessageFilled, BellFilled } from '@ant-design/icons'
+import { MessageFilled, BellFilled, SearchOutlined } from '@ant-design/icons'
 // import { useSelector } from 'react-redux'
 import defaultAvatar from '~/assets/image/icon.png'
 const { TabPane } = Tabs
@@ -37,7 +37,10 @@ const MainLayout = (props: PropsWithChildren<any>) => {
           <div className="flex items-center">
             {/* <Search style={{ width: 400 }}></Search> */}
             <AutoComplete placeholder="搜索你感兴趣的内容…" style={{ width: 400 }}>
-              <Search className="rounded" style={{ width: 400 }}></Search>
+              <Input className="ant-rounded bg-gray-50 focus-within:bg-white " style={{ width: 400 }} suffix={
+                <SearchOutlined></SearchOutlined>
+              }></Input>
+              {/* <Search className="rounded" style={{ width: 400 }} ></Search> */}
             </AutoComplete>
             <Button className="ml-3" style={{ width: 70 }} shape="round" type="primary">提问</Button>
           </div>
@@ -55,8 +58,8 @@ const MainLayout = (props: PropsWithChildren<any>) => {
         </div>
 
       </div>
-      <div>
-        <div className=" mx-auto" style={{ width: 1000 }}>
+      <div style={{ marginTop: 10 }}>
+        <div className="mx-auto" style={{ width: 1000 }}>
           {props.children}
         </div>
 
