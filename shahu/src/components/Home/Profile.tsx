@@ -6,6 +6,7 @@ import { Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import ProfileForm from './ProfileForm'
 export default function ProfileEditor () {
+  // @ts-ignore
   const profile = useSelector(state => state.profile)
 
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ export default function ProfileEditor () {
   // }, [profile])
   const onFinish = (values: any) => {
     console.log('Success:', values)
+    // @ts-ignore
     dispatch(saveProfile2LocalDb(values))
   }
 

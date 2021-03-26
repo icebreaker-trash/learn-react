@@ -55,6 +55,7 @@ const UploadAvatar: FC<AntdFormItemProps> = (props: AntdFormItemProps) => {
     }
   }
   const handleRequest = (info: RcCustomRequestOptions) => {
+    // @ts-ignore
     info.onSuccess(null, null)
   }
   return (

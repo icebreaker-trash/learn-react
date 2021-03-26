@@ -37,6 +37,7 @@ export const profileSlice = createSlice({
     }
   },
   extraReducers: {
+    // @ts-ignore
     [saveProfile2LocalDb.fulfilled]: (state, action) => {
       Object.assign(state, action.payload)
     }

@@ -12,6 +12,7 @@ const ProfileForm = (props: IProfileForm) => {
   const formInstance = useRef(null)
 
   useEffect(() => {
+    // @ts-ignore
     formInstance.current?.setFieldsValue(props.profile)
   }, [props])
 

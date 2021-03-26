@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 // import ProfileStore from '~/bus/Profile'
 // import { Provider } from 'react-redux'
 // import Profile from './Profile'
+import { mockCardData } from './mockData'
+
+import HomeCard from './Card'
 
 function getTabClass (active: boolean) {
   const res = ['cursor-pointer']
@@ -34,9 +37,11 @@ export default function HomePage () {
 
         </div>
 
-        <div>
-          程序员内卷严重，月薪2万毫无幸福感！看不透这三点，别谈幸福感
-        </div>
+        {
+          mockCardData.map(x => {
+            return <HomeCard key={x.id} {...x}></HomeCard>
+          })
+        }
 
       </div>
       <div
