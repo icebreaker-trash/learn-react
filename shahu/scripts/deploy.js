@@ -5,6 +5,9 @@ const {
   TENCENT_COS_CDN_BUCKET,
   TENCENT_COS_CDN_REGION
 } = process.env
+
+// const tencentcloud = require('tencentcloud-sdk-nodejs')
+// const CdnClient = tencentcloud.cdn.v20180606.Client
 const COS = require('cos-nodejs-sdk-v5')
 const { nanoid } = require('nanoid')
 const chalk = require('chalk')
@@ -13,7 +16,13 @@ const dayjs = require('dayjs')
 const klaw = require('klaw')
 
 const distPath = path.resolve(__dirname, '..', 'dist')
-
+// const cdn = new CdnClient({
+//   credential: {
+//     secretId: TENCENT_SECRET_ID,
+//     secretKey: TENCENT_SECRET_KEY
+//   },
+//   region: TENCENT_COS_CDN_REGION
+// })
 // 创建实例
 const cos = new COS({
   SecretId: TENCENT_SECRET_ID,
