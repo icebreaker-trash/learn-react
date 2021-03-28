@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 // import { Provider } from 'react-redux'
 // import Profile from './Profile'
 import { mockCardData } from './mockData'
-
+// import { BackTop } from 'antd';
 import HomeCard from './Card'
-
+import SideBarIndex from './SideBar'
 function getTabClass (active: boolean) {
   const res = ['cursor-pointer']
   if (active) {
@@ -47,7 +47,9 @@ export default function HomePage () {
       <div
         style={{
           width: 296
-        }}></div>
+        }}>
+        <SideBarIndex></SideBarIndex>
+      </div>
     </div>
   )
 }
