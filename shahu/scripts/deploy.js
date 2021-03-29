@@ -9,10 +9,11 @@ const {
 // const tencentcloud = require('tencentcloud-sdk-nodejs')
 // const CdnClient = tencentcloud.cdn.v20180606.Client
 const COS = require('cos-nodejs-sdk-v5')
-const { nanoid } = require('nanoid')
+// const { nanoid } = require('nanoid')
 const chalk = require('chalk')
+const fs = require('fs')
 const path = require('path')
-const dayjs = require('dayjs')
+// const dayjs = require('dayjs')
 const klaw = require('klaw')
 
 const distPath = path.resolve(__dirname, '..', 'dist')
@@ -29,7 +30,7 @@ const cos = new COS({
   SecretKey: TENCENT_SECRET_KEY
 })
 // 分片上传
-const prefix = nanoid(10) + dayjs().format('YYYYMMDD')
+const prefix = fs.readFileSync(path.resolve(__dirname, '..', '.base'))
 
 console.log(chalk.black.bgGreenBright(prefix))
 ;(async () => {
@@ -46,6 +47,18 @@ console.log(chalk.black.bgGreenBright(prefix))
         })
       }
     }
+    for (const filename of fs.readdirSync(distPath)) {
+      const filepath = path.resolve(distPath, filename)
+      const stat = fs.statSync(filepath)
+      if (stat.isFile()) {
+        allFile.push({
+          Bucket: TENCENT_COS_CDN_BUCKET,
+          Region: TENCENT_COS_CDN_REGION,
+          Key: filename,
+          FilePath: filepath
+        })
+      }
+    }
     await cos.uploadFiles({
       files: allFile,
       SliceSize: 1024 * 1024,
@@ -56,21 +69,21 @@ console.log(chalk.black.bgGreenBright(prefix))
       }
     })
 
-    await cos.putBucketWebsite({
-      Bucket: TENCENT_COS_CDN_BUCKET /* 必须 */,
-      Region: TENCENT_COS_CDN_REGION /* 必须 */,
-      WebsiteConfiguration: {
-        IndexDocument: {
-          Suffix: prefix + '/index.html'
-        },
-        ErrorDocument: {
-          Key: prefix + '/index.html'
-        }
-        // RedirectAllRequestsTo: {
-        //   Protocol: 'https'
-        // }
-      }
-    })
+    // await cos.putBucketWebsite({
+    //   Bucket: TENCENT_COS_CDN_BUCKET /* 必须 */,
+    //   Region: TENCENT_COS_CDN_REGION /* 必须 */,
+    //   WebsiteConfiguration: {
+    //     IndexDocument: {
+    //       Suffix: prefix + '/index.html'
+    //     },
+    //     ErrorDocument: {
+    //       Key: prefix + '/index.html'
+    //     }
+    //     // RedirectAllRequestsTo: {
+    //     //   Protocol: 'https'
+    //     // }
+    //   }
+    // })
   } catch (err) {
     console.log(err)
   }

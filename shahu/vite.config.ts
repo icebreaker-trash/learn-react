@@ -1,8 +1,21 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import path from 'path'
+import fs from 'fs'
+import dayjs from 'dayjs'
+import { nanoid } from 'nanoid'
+
+let base = '/'
+// const assetsDir = 'assets'
+if (process.env.NODE_ENV === 'production') {
+  const prefix = '/' + nanoid(10) + dayjs().format('YYYYMMDD') + '/'
+  fs.writeFileSync('./.base', prefix)
+  base = prefix
+  // assetsDir = prefix + '/assets'
+}
 // https://vitejs.dev/config/
 export default defineConfig({
+  base,
   plugins: [reactRefresh()],
   resolve: {
     alias: [
@@ -10,18 +23,10 @@ export default defineConfig({
         find: '~',
         replacement: path.resolve(__dirname, 'src')
       },
-      // {
-      //   find: /^~/,
-      //   replacement: path.resolve(__dirname, 'src')
-      // },
       {
         find: '~~',
         replacement: __dirname
       }
-      // {
-      //   find: /^@/,
-      //   replacement: path.resolve(__dirname, 'src')
-      // }
     ]
   },
   css: {
@@ -34,6 +39,10 @@ export default defineConfig({
       }
     }
   }
+  // build: {
+  //   assetsDir
+  // }
+
   // esbuild: {
   //   jsxInject: 'import React from \'react\''
   // }
