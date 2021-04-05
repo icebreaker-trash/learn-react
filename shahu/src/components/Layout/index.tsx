@@ -11,8 +11,8 @@ const MainLayout = (props: PropsWithChildren<any>) => {
   const history = useHistory()
   return (
     <div>
-      <div className="w-screen bg-white overflow-hidden shadow-sm" style={{ height: 52 }}>
-        <div style={{ width: 1200 }} className="mx-auto flex items-center justify-between px-4">
+      <div className="w-full bg-white shadow-sm min-w-full" style={{ height: 52 }}>
+        <div style={{ width: 1200 }} className="mx-auto flex items-center justify-between px-4 bg-white">
           <div className="flex items-center">
             <div onClick={
               () => {
@@ -52,7 +52,7 @@ const MainLayout = (props: PropsWithChildren<any>) => {
               <MessageFilled></MessageFilled>
             </div>
 
-            <Avatar shape="square" src={defaultAvatar}></Avatar>
+            <Avatar className="cursor-pointer" shape="square" src={defaultAvatar}></Avatar>
           </div>
 
         </div>

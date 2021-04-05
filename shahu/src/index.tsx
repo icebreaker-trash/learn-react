@@ -17,8 +17,9 @@ import Home from './components/Home/index'
 import store from './store'
 import { Provider } from 'react-redux'
 import MainLayout from '~/components/Layout'
-
+import AdminLayout from '~/components/Layout/AdminLayout'
 import { ConfigProvider } from 'antd'
+import { adminRoutePrefix } from '~/config/base'
 // import { createBrowserHistory } from 'history'
 // const customHistory = createBrowserHistory()
 import './init.ts'
@@ -39,6 +40,13 @@ ReactDOM.render(
 
           <Route path="/signin">
             <Signin />
+          </Route>
+
+          <Route path={adminRoutePrefix}>
+            <AdminLayout >
+              Hello
+            </AdminLayout>
+
           </Route>
 
         </Router>

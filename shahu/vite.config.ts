@@ -26,7 +26,9 @@ export default defineConfig({
       {
         find: '~~',
         replacement: __dirname
-      }
+      },
+      // for https://procomponents.ant.design/
+      { find: /^~/, replacement: '' }
     ]
   },
   css: {
