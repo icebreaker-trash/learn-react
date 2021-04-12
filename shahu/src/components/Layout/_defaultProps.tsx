@@ -4,8 +4,8 @@ import { RouterTypes } from '@ant-design/pro-layout/lib/typings'
 import { adminRoutePrefix } from '~/config/base'
 // import path from 'path'
 import * as R from 'ramda'
-function resolve (p: string) {
-  return adminRoutePrefix + p
+function resolve (...args: string[]) {
+  return adminRoutePrefix + args.join('')
 }
 
 const routes = [
@@ -20,18 +20,18 @@ const routes = [
     icon: <CrownOutlined />,
     routes: [
       {
-        path: '/sub-page1',
+        path: resolve('/manager', '/sub-page1'),
         name: '一级页面',
         icon: <CrownOutlined />
       },
       {
-        path: '/sub-page2',
+        path: resolve('/manager', '/sub-page2'),
         name: '二级页面',
         icon: <CrownOutlined />
         // component: './Welcome'
       },
       {
-        path: '/sub-page3',
+        path: resolve('/manager', '/sub-page3'),
         name: '三级页面',
         icon: <CrownOutlined />
         // component: './Welcome'

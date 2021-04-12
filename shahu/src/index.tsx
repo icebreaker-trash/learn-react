@@ -7,7 +7,7 @@ import './index.less'
 import reportWebVitals from './reportWebVitals'
 import {
   BrowserRouter as Router,
-  // Switch,
+  Switch,
   Route
   // Link
 } from 'react-router-dom'
@@ -18,6 +18,8 @@ import store from './store'
 import { Provider } from 'react-redux'
 import MainLayout from '~/components/Layout'
 import AdminLayout from '~/components/Layout/AdminLayout'
+import Welcome from '~/components/Admin/Welcome'
+import RxjsIndex from '~/pages/rxjs/index'
 import { ConfigProvider } from 'antd'
 import { adminRoutePrefix } from '~/config/base'
 // import { createBrowserHistory } from 'history'
@@ -28,26 +30,34 @@ ReactDOM.render(
     <Provider store={store} >
       <ConfigProvider autoInsertSpaceInButton={false}>
         <Router>
-          <Route exact path="/">
-            <MainLayout>
-              <Home />
-            </MainLayout>
-          </Route>
+          {/* 排外的 */}
+          <Switch>
+            <Route exact path="/">
+              <MainLayout>
+                <Home />
+              </MainLayout>
+            </Route>
 
-          <Route path="/term">
-            <Term />
-          </Route>
+            <Route path="/term">
+              <Term />
+            </Route>
 
-          <Route path="/signin">
-            <Signin />
-          </Route>
+            <Route path="/signin">
+              <Signin />
+            </Route>
 
-          <Route path={adminRoutePrefix}>
-            <AdminLayout >
-              Hello
-            </AdminLayout>
+            <Route path="/rxjs">
 
-          </Route>
+              <RxjsIndex />
+            </Route>
+
+            <Route path={adminRoutePrefix}>
+              <AdminLayout >
+                <Welcome></Welcome>
+              </AdminLayout>
+
+            </Route>
+          </Switch>
 
         </Router>
       </ConfigProvider>
